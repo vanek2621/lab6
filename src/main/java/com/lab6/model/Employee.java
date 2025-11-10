@@ -33,12 +33,12 @@ public class Employee {
     private String lastName;
     
     @Schema(description = "Creation timestamp", accessMode = Schema.AccessMode.READ_ONLY)
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime createdAt;
     
     @Schema(description = "Last update timestamp", accessMode = Schema.AccessMode.READ_ONLY)
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime updatedAt;
 
