@@ -26,7 +26,7 @@ public class CompanyController {
     }
 
     @GetMapping
-    @Operation(summary = "Get all products", description = "Retrieves a list of all products")
+    @Operation(summary = "Get all companies", description = "Retrieves a list of all companies")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved list")
     public ResponseEntity<List<Company>> getAllCompanies() {
         List<Company> companies = companyService.getAllCompanies();

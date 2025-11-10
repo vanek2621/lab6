@@ -14,9 +14,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Schema(description = "User entity")
-public class User {
-    @Schema(description = "User ID", accessMode = Schema.AccessMode.READ_ONLY, example = "1")
+@Schema(description = "Employee entity")
+public class Employee {
+    @Schema(description = "Employee ID", accessMode = Schema.AccessMode.READ_ONLY, example = "1")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     
@@ -42,7 +42,7 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime updatedAt;
 
-    public User(Long id, String username, String email, String firstName, String lastName) {
+    public Employee(Long id, String username, String email, String firstName, String lastName) {
         this.id = id;
         this.username = username;
         this.email = email;

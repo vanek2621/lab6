@@ -26,7 +26,7 @@ public class EmployeeController {
     }
 
     @GetMapping
-    @Operation(summary = "Get all users", description = "Retrieves a list of all users")
+    @Operation(summary = "Get all employees", description = "Retrieves a list of all employees")
     @ApiResponse(responseCode = "200", description = "Successfully retrieved list")
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = employeeService.getAllEmployees();
