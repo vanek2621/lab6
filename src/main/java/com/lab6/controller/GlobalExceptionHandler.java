@@ -38,7 +38,8 @@ public class GlobalExceptionHandler {
         logger.error("Unexpected error occurred", e);
         Map<String, String> errorResponse = new HashMap<>();
         errorResponse.put("error", "Internal server error");
-        errorResponse.put("message", "An unexpected error occurred");
+        errorResponse.put("message", e.getMessage() != null ? e.getMessage() : "An unexpected error occurred");
+        errorResponse.put("type", e.getClass().getSimpleName());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }
