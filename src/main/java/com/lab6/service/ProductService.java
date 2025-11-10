@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -81,16 +80,6 @@ public class ProductService {
         if (removed == null) {
             throw new NoSuchElementException("Product with id " + id + " not found");
         }
-    }
-
-    public List<Product> searchProductsByName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            return getAllProducts();
-        }
-        String searchTerm = name.toLowerCase().trim();
-        return products.values().stream()
-                .filter(p -> p.getName().toLowerCase().contains(searchTerm))
-                .collect(Collectors.toList());
     }
 }
 

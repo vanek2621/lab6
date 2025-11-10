@@ -52,13 +52,12 @@ public class UserController {
             @ApiResponse(responseCode = "201", description = "User created successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid input data or duplicate username/email", content = @Content)
     })
-    public ResponseEntity<User> createUser(
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "User data to create",
-                    required = true,
-                    content = @Content(schema = @Schema(implementation = User.class))
-            )
-            @RequestBody User user) {
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "User data to create",
+            required = true,
+            content = @Content(schema = @Schema(implementation = User.class))
+    )
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
             User createdUser = userService.createUser(user);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
@@ -74,13 +73,13 @@ public class UserController {
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Invalid input data or duplicate username/email", content = @Content)
     })
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "Updated user data",
+            required = true,
+            content = @Content(schema = @Schema(implementation = User.class))
+    )
     public ResponseEntity<User> updateUser(
             @Parameter(description = "User ID", required = true) @PathVariable Long id,
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Updated user data",
-                    required = true,
-                    content = @Content(schema = @Schema(implementation = User.class))
-            )
             @RequestBody User user) {
         try {
             User updatedUser = userService.updateUser(id, user);

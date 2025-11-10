@@ -52,13 +52,12 @@ public class ProductController {
             @ApiResponse(responseCode = "201", description = "Product created successfully"),
             @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content)
     })
-    public ResponseEntity<Product> createProduct(
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Product data to create",
-                    required = true,
-                    content = @Content(schema = @Schema(implementation = Product.class))
-            )
-            @RequestBody Product product) {
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "Product data to create",
+            required = true,
+            content = @Content(schema = @Schema(implementation = Product.class))
+    )
+    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         try {
             Product createdProduct = productService.createProduct(product);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
@@ -74,13 +73,13 @@ public class ProductController {
             @ApiResponse(responseCode = "404", description = "Product not found", content = @Content),
             @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content)
     })
+    @io.swagger.v3.oas.annotations.parameters.RequestBody(
+            description = "Updated product data",
+            required = true,
+            content = @Content(schema = @Schema(implementation = Product.class))
+    )
     public ResponseEntity<Product> updateProduct(
             @Parameter(description = "Product ID", required = true) @PathVariable Long id,
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Updated product data",
-                    required = true,
-                    content = @Content(schema = @Schema(implementation = Product.class))
-            )
             @RequestBody Product product) {
         try {
             Product updatedProduct = productService.updateProduct(id, product);
@@ -108,13 +107,5 @@ public class ProductController {
         }
     }
 
-    @GetMapping("/search")
-    @Operation(summary = "Search products by name", description = "Searches for products matching the name pattern")
-    @ApiResponse(responseCode = "200", description = "Search completed successfully")
-    public ResponseEntity<List<Product>> searchProducts(
-            @Parameter(description = "Product name to search for") @RequestParam(required = false) String name) {
-        List<Product> products = productService.searchProductsByName(name);
-        return ResponseEntity.ok(products);
-    }
 }
 
